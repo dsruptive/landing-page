@@ -115,7 +115,7 @@ var App = function() {
 	// Header
 	function handleHeader() {
 		// jQuery to collapse the navbar on scroll
-		var OffsetTop = $('.navbar').attr('data-offset-top');
+		/*var OffsetTop = $('.navbar').attr('data-offset-top');
 		if ($('.navbar').offset().top > OffsetTop) {
 			$('.navbar-fixed-top').addClass('top-nav-collapse');
 		}
@@ -126,7 +126,7 @@ var App = function() {
 				$('.navbar-fixed-top').removeClass('top-nav-collapse');
 			}
 		});
-
+		*/
 		var $offset = 0;
 		if ($('.one-page-nav-scrolling').hasClass('one-page-nav__fixed')) {
 			$offset = $(".one-page-nav-scrolling").height()+8;

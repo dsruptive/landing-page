@@ -487,6 +487,12 @@ h4 {
 	overflow: hidden;
 	margin-top: 52px;
 }
+@media (min-width: 992px) {
+	.intro-section {
+	  margin-top: 76px;
+	}
+}
+
 .backstretch:after {
 	background: rgba(0,0,0,.5);
 }
