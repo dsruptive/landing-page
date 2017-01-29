@@ -65,23 +65,12 @@
 
   <!-- Intro Section -->
   <section class="intro-section">
-		<div class="">
-			<video id="video" width="100%" poster="assets/img/poster.jpg" playsinline="" autoplay="" muted="" loop="">
+		<div class="video-wrapper">
+			<video id="video-background" width="100%" poster="assets/img/poster.jpg" playsinline="" autoplay="" muted="" loop="">
 					<source src="https://player.vimeo.com/external/200954121.hd.mp4?s=55596e7b4d1682ca8283c6d120a14231ab3c89b7&amp;profile_id=174" type="video/mp4">
 					Your browser do not support the video
 			</video>
-			<a><img id="play" class="play-icon" src="assets/img/play.png"></a>
-				<!-- Promo Content BEGIN -->
-				<!--div class="container valign__middle text-center">
-					<div class="row">
-						<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12 page-scroll">
-							<h1 class="g-color-white g-mb-25">Expert health advice &amp; care for wealth life</h1>
-							<p class="g-color-white g-mb-40">Duis aute irure dolor in reprehenderit in voluptate velit cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
-	 						<a href="#footer" class="btn-u btn-u-lg g-bg-default-color btn-u-upper rounded">Contact Us</a>
-						</div>
-					</div>
-				</div-->
-			  <!-- Promo Content END -->
+			<a class="play-video"><img id="play" class="play-icon" src="assets/img/play.png"></a>
 			</div>
   </section>
   <!-- End Intro Section -->
@@ -136,18 +125,18 @@
 			</div>
 			<form action="#" class="sky-form clearfix">
 				<div class="row">
-					<div class="col col-3 g-xs-mb-20 location-select active">
+					<div class="col col-3 g-xs-mb-20 location-select">
 						<img src="assets/img/icons/location.png" alt="Sweden">
-						<span class="country">Sweden [<a href="#">change</a>]</span>
+						<span class="country"><span class="formatted_address">Sweden</span> [<span class="change_country">change</span>]</span>
 					</div>
-						<div class="col col-3 g-xs-mb-20 country-select">
+						<div class="col col-3 g-xs-mb-20 country-select active">
 							<label class="select">
-								<select class="rounded">
+								<select class="rounded ">
 									<option value="0" selected>Select country</option>
-									<option value="1">Sweden</option>
-									<option value="2">Germany</option>
-									<option value="3">Norway</option>
-									<option value="4">Denmark</option>
+									<option value="SE">Sweden</option>
+									<option value="DE">Germany</option>
+									<option value="NO">Norway</option>
+									<option value="DK">Denmark</option>
 								</select>
 							</label>
 						</div>
@@ -247,6 +236,13 @@
 	</section>
   <!-- End Section -->
 
+	<div class="overlay" id="overlay">
+        <video id="full-video" controls="" playsinline="">
+            <source src="https://player.vimeo.com/external/191021209.hd.mp4?s=c54ead1f4edd9ba6f7d41889c1be6ff5af37ca01&amp;profile_id=174" type="video/mp4">
+            Your browser do not support the video
+        </video>
+			  <a><img id="close" class="cross-icon" src="assets/img/cross.svg"></a>
+    </div>
 </main>
 
 <!-- JS Global Compulsory -->
