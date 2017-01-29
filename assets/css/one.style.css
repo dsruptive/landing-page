@@ -580,19 +580,6 @@ a:hover {
   background: #72c02c;
 }
 
-/*Intro Section
-------------------------------------*/
-/*Intro Section*/
-.intro-section {
-  /*background: #222;*/
-}
-
-.intro-section:after {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
-
 /*About Section
 ------------------------------------*/
 /*About Section*/

@@ -2,6 +2,9 @@
 * Template Name: Unify - Responsive Bootstrap Template
 * Author: @htmlstream
 * Website: http://htmlstream.com
+
+* Fonts used https://typekit.com/fonts/museo-sans/details/museo-sans-900
+
 */
 
 
@@ -39,6 +42,10 @@ a:focus {
 }
 a:hover {
 	text-decoration: underline;
+}
+
+audio, canvas, progress, video {
+    display: inline-block;
 }
 
 ::-moz-selection {
@@ -430,7 +437,7 @@ h4 {
 
 .g-bg-default-color,
 .g-bg-default-color:focus {
-	background: #BAEBFB;
+	background: #232833;
 	color: #fff;
 }
 .g-bg-default-color:hover {
@@ -514,7 +521,12 @@ h4 {
 	-webkit-transition: all 0.5s ease-in;
 	-o-transition: all 0.5s ease-in;
 }
-
+.intro-section .video-wrapper {
+	position: relative;
+}
+.intro-section .play-video {
+	position: absolute;
+}
 .intro-section .play-icon {
 	width: 60px;
 }
@@ -558,8 +570,12 @@ h4 {
 .form-section .location-select.active {
 	display: block;
 }
-.form-section .location-select span {
+.form-section .location-select .formatted_address {
 	padding-left: 4px;
+}
+.form-section .location-select .change_country {
+	color: #232833;
+	font-weight: 600;
 }
 
 /*---
@@ -669,6 +685,10 @@ h4 {
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
+	cursor: pointer; cursor: hand;
+}
+.community .fb-group:hover {
+    background: #BAEBFB;
 }
 .community .fb-group .fb-group-info p {
 	color: #555;
@@ -993,7 +1013,35 @@ h4 {
 	top: 2px;
 }
 
-
+.overlay {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(51, 51, 51, 0.95);
+  z-index: 1040;
+}
+.overlay video {
+		width: 100%;
+}
+.overlay .cross-icon {
+    width: 20px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    opacity: 0.7;
+    cursor: pointer;
+    transition: all 0.5s ease-in;
+    -moz-transition: all 0.5s ease-in;
+    -webkit-transition: all 0.5s ease-in;
+    -o-transition: all 0.5s ease-in;
+}
 .footer{
 	padding-right: 15px;
 	padding-left: 15px;
