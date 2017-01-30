@@ -111,7 +111,7 @@
   </section>
   <!-- End Section -->
 
-  <!-- Book Section -->
+  <!-- Form Section -->
 	<a name="connect"></a>
   <section class="container g-mb-30">
   	<div class="form-section">
@@ -119,11 +119,32 @@
 	  		<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
 					<div class="text-center">
 						<h2>CONNECT YOURSELF</h2>
-						<p><i>DSx, i2c-NTAG216, uID: 986343E3412</i></p>
 					</div>
 				</div>
 			</div>
-			<form action="#" class="sky-form clearfix">
+			<div class="row registered hidden">
+				<div class="col col-3 g-xs-mb-20 text-center">
+					You're already registered. You'll hear from us soon! Go check out the online communities while waiting.
+				</div>
+			</div>
+			<div class="row registration-complete hidden">
+				<div class="col col-3 g-xs-mb-20 text-center">
+					You're now registered. You'll hear from us soon! Go check out the online communities while waiting.
+				</div>
+			</div>
+			<div class="row missing-uid hidden">
+				<div class="col col-3 g-xs-mb-20 text-center">
+					You need to scan your implant to be able to connect it!
+				</div>
+			</div>
+			<form action="#" class="sky-form clearfix hidden" id="sky-form3">
+				<input type="hidden" name="uid" value="">
+
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-center">
+						<p><i>DSx, i2c-NTAG216, uID: <span class="visual-uid"><span></i></p>
+					</div>
+				</div>
 				<div class="row">
 					<div class="col col-3 g-xs-mb-20 location-select">
 						<img src="assets/img/icons/location.png" alt="Sweden">
@@ -131,7 +152,7 @@
 					</div>
 						<div class="col col-3 g-xs-mb-20 country-select active">
 							<label class="select">
-								<select class="rounded ">
+								<select name="country" class="rounded ">
 									<option value="0" selected>Select country</option>
 									<option value="SE">Sweden</option>
 									<option value="DE">Germany</option>
@@ -143,13 +164,13 @@
 					<div class="col col-3 g-xs-mb-20">
 						<label class="input">
 							<span class="icon-append icon-user"></span>
-							<input class="rounded" type="text" placeholder="Your name">
+							<input class="rounded" type="text" name="name" placeholder="Your name">
 						</label>
 					</div>
 					<div class="col col-3 g-xs-mb-20">
 						<label class="input">
 							<span class="icon-append icon-envelope"></span>
-							<input class="rounded" type="text" placeholder="Your email">
+							<input class="rounded" type="text" name="email" placeholder="Your email">
 						</label>
 					</div>
 					<div class="col col-2 text-center">
@@ -250,11 +271,11 @@
 <script>
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyB7tjXu4WE9VCvegf8C7s-_2Wzpi6xjO7s",
-    authDomain: "dsruptive-landing-page.firebaseapp.com",
-    databaseURL: "https://dsruptive-landing-page.firebaseio.com",
-    storageBucket: "dsruptive-landing-page.appspot.com",
-    messagingSenderId: "487245264669"
+    apiKey: "xxx",
+    authDomain: "xxx",
+    databaseURL: "xxx",
+    storageBucket: "xxx",
+    messagingSenderId: "xxx"
   };
   firebase.initializeApp(config);
 </script>

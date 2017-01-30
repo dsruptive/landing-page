@@ -1,7 +1,7 @@
 var ContactForm = function () {
 
     return {
-        
+
         //Contact Form
         initContactForm: function () {
 	        // Validation
@@ -17,19 +17,9 @@ var ContactForm = function () {
 	                {
 	                    required: true,
 	                    email: true
-	                },
-	                message:
-	                {
-	                    required: true,
-	                    minlength: 10
-	                },
-	                captcha:
-	                {
-	                    required: true,
-	                    remote: 'assets/plugins/sky-forms/version-2.0.1/captcha/process.php'
 	                }
 	            },
-	                                
+
 	            // Messages for form validation
 	            messages:
 	            {
@@ -41,34 +31,48 @@ var ContactForm = function () {
 	                {
 	                    required: 'Please enter your email address',
 	                    email: 'Please enter a VALID email address'
-	                },
-	                message:
-	                {
-	                    required: 'Please enter your message'
-	                },
-	                captcha:
-	                {
-	                    required: 'Please enter characters',
-	                    remote: 'Correct captcha is required'
 	                }
 	            },
-	                                
-	            // Ajax form submition                  
+
+	            // Ajax form submition
 	            submitHandler: function(form)
 	            {
 	                $(form).ajaxSubmit(
 	                {
-	                    beforeSend: function()
+	                    beforeSend: function(formData, jqForm, options)
 	                    {
 	                        $('#sky-form3 button[type="submit"]').attr('disabled', true);
 	                    },
-	                    success: function()
+	                    success: function(responseText, statusText, xhr, $form)
 	                    {
-	                        $("#sky-form3").addClass('submited');
+                        var uid = $('#sky-form3 input[name="uid"]').val();
+                        var countryCode = $('#sky-form3 select[name="country"]').find(":selected").val();
+                        var country = $('#sky-form3 select[name="country"]').find(":selected").text();
+                        var name = $('#sky-form3 input[name="name"]').val();
+                        var email = $('#sky-form3 input[name="email"]').val();
+                        var regDate = new Date().toJSON();
+
+                        var key = firebase.database().ref().child('users/'+uid).push().key;
+
+                        firebase.database().ref('users/'+uid).set({
+                          "country": country,
+                          "countryCode": countryCode,
+                          "email": email,
+                          "name": name,
+                          "registration-time": regDate
+                        });
+                        var setVisit = {};
+                        setVisit['users/'+uid+'/visits/'+key] = regDate;
+                        firebase.database().ref().update(setVisit);
+
+                				$('.sky-form').remove();
+                				$('.registration-complete').removeClass('hidden');
+
+                        $("#sky-form3").addClass('submited');
 	                    }
 	                });
 	            },
-	            
+
 	            // Do not change code below
 	            errorPlacement: function(error, element)
 	            {
@@ -78,5 +82,5 @@ var ContactForm = function () {
         }
 
     };
-    
+
 }();
