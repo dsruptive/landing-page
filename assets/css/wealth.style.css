@@ -575,6 +575,7 @@ h4 {
 .form-section .country-select.active,
 .form-section .location-select.active {
 	display: block;
+	text-align: right;
 }
 .form-section .location-select .formatted_address {
 	padding-left: 4px;
@@ -582,6 +583,13 @@ h4 {
 .form-section .location-select .change_country {
 	color: #232833;
 	font-weight: 600;
+}
+
+@media (max-width: 768px) {
+	.form-section .country-select.active,
+	.form-section .location-select.active {
+		text-align: center;
+	}
 }
 
 /*---
