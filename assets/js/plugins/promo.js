@@ -35,6 +35,9 @@
 				$('.sky-form').remove();
 				$('.registered').removeClass('hidden');
 			}
+		}, function(error){
+			// don't handle error
+			return;
 		});
 		var userRegistration = function() {
 			if (navigator.geolocation) {
@@ -59,37 +62,34 @@
 						updateCountryFromGeolocation(country, countryCode);
 					})
 					.fail(function(error) {
-						// hide geolocation country
-						geolocationEl.removeClass('active');
-						// show select country
-						selectCountryEl.addClass('active');
+						showCountryInput();
 					});
 				};
 
 			  var geoError = function(error) {
-			    console.log('Error occurred. Error code: ' + error.code);
-			    //   0: unknown error
-			    //   1: permission denied
-			    //   2: position unavailable (error response from location provider)
-			    //   3: timed out
-
-					// hide geolocation country
-					geolocationEl.removeClass('active');
-					// show select country
-					selectCountryEl.addClass('active');
+					showCountryInput();
 			  };
 
 			  navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
 
 			} else { // location not supported or disabled
-				// hide geolocation country
-				geolocationEl.removeClass('active');
-				// show select country
-				selectCountryEl.addClass('active');
+				showCountryInput();
 			}
 		}
 
+		var showCountryInput = function() {
+			// hide geolocation country
+			geolocationEl.removeClass('active');
+			// show select country
+			selectCountryEl.addClass('active');
+		};
 
+		var showGeolocation = function() {
+			// show geolocation country
+			geolocationEl.addClass('active');
+			// hide select country
+			selectCountryEl.removeClass('active');
+		};
 
 		var updateCountryFromGeolocation = function(country, code) {
 			// update text
@@ -105,10 +105,7 @@
 				}
 			});
 
-			// show geolocation country
-			geolocationEl.addClass('active');
-			// hide select country
-			selectCountryEl.removeClass('active');
+			showGeolocation();
 		};
 	} else {
 		// no uid available, show message
@@ -135,10 +132,7 @@
 
 	// on change location click, swap elements
 	$('.change_country').on("click", function(event) {
-			// hide geolocation country
-			geolocationEl.removeClass('active');
-			// show select country
-			selectCountryEl.addClass('active');
+		showCountryInput();
 	});
 
 	// on resize, update play icon position with regards to the size of the video element
