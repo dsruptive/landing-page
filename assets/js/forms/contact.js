@@ -54,7 +54,7 @@ var ContactForm = function () {
 
                         var key = firebase.database().ref().child('users/'+uid).push().key;
 
-                        firebase.database().ref('users/'+uid).set({
+                        firebase.database().ref('userdata/'+uid).set({
                           "country": country,
                           "countryCode": countryCode,
                           "email": email,
