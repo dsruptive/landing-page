@@ -7,15 +7,16 @@
 	var playButton = document.getElementById('play');
 	var close = document.getElementById('close');
 
+	playButton.addEventListener('click', startVideo, false);
+	close.addEventListener('click', stopVideo, false);
+	positionPlayIcon();
+
 	var uid = getParameterByName('uid');
 	if (uid) {
-		var uidEl = $('.sky-form [name=uid]');
-		uidEl.val(uid);
+		$('.sky-form [name=uid]').val(uid);
 		$('.visual-uid').text(uid);
 
 		// check for uid in database
-		var inDatabase = false;
-
 		var database = firebase.database();
 		var user;
 		var ref = database.ref('users/'+uid).once('value').then(function(snap) {
@@ -24,22 +25,24 @@
 				userRegistration();
 				$('.sky-form').removeClass('hidden');
 			}	else {
-				// register visit
+				// already registered, save timestamp for visit
 				var visitDate = new Date().toJSON();
 				var setVisit = {};
 				var key = firebase.database().ref().child('users/'+uid).push().key;
 				setVisit['users/'+uid+'/visits/'+key] = visitDate;
-				firebase.database().ref().update(setVisit);
+				firebase.database().ref().update(setVisit, function() {
+					return;
+				});
 
-				// already registered, show message
+				// show message
 				$('.sky-form').remove();
 				$('.registered').removeClass('hidden');
 			}
 		}, function(error){
-			// don't handle error
 			return;
 		});
-		var userRegistration = function() {
+
+		function userRegistration() {
 			if (navigator.geolocation) {
 				var startPos;
 			  var geoOptions = {
@@ -77,26 +80,26 @@
 			}
 		}
 
-		var showCountryInput = function() {
+		function showCountryInput() {
 			// hide geolocation country
 			geolocationEl.removeClass('active');
 			// show select country
 			selectCountryEl.addClass('active');
-		};
+		}
 
-		var showGeolocation = function() {
+		function showGeolocation() {
 			// show geolocation country
 			geolocationEl.addClass('active');
 			// hide select country
 			selectCountryEl.removeClass('active');
-		};
+		}
 
-		var updateCountryFromGeolocation = function(country, code) {
+		function updateCountryFromGeolocation(country, code) {
 			// update text
 			$(".form-section .formatted_address").text(country);
 
 			// update selectedIndex
-			$(".form-section .country-select select option").each(function(key, val){
+			$(".form-section .country-select select option").each(function(key, val) {
 				var optionValue = $(this).attr('value');
 				if (optionValue === code) {
 					$(this).parent().prop('selectedIndex',key);
@@ -115,20 +118,15 @@
 
 	/* GOECODING END */
 
-	playButton.addEventListener('click', startVideo, false);
-	close.addEventListener('click', stopVideo, false);
-
-	var positionPlayIcon = function() {
+	function positionPlayIcon() {
 		var videoEl = $("#video-background");
 		var playEl = $('.play-video');
 		var t = videoEl.offset().top;
-
-
 		playEl.css({
 			top: 0.5 * (videoEl.height()-playEl.height()),
 			left: 0.5 * (videoEl.width()-playEl.width())
 		})
-	};
+	}
 
 	// on change location click, swap elements
 	$('.change_country').on("click", function(event) {
@@ -137,7 +135,6 @@
 
 	// on resize, update play icon position with regards to the size of the video element
 	$(window).on("resize", positionPlayIcon);
-	positionPlayIcon();
 
 	document.onkeydown = function(event) {
 		event = event || window.event;
@@ -164,8 +161,6 @@
 		overlay.style.display = 'none';
 		videoBackground.play();
 	}
-
-	// on submit, fetch and validate data
 
 	// setup listeners on facebook groups
 	function forwardToGroup(event) {
