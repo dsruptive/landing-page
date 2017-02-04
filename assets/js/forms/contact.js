@@ -59,7 +59,7 @@ var ContactForm = function () {
                           "countryCode": countryCode,
                           "email": email,
                           "name": name,
-                          "registration-time": regDate
+                          "registrationtime": regDate
                         });
                         var setVisit = {};
                         setVisit['users/'+uid+'/visits/'+key] = regDate;
